@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BBQ des Frères 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #FF4500;
+    --ember: #FF8C00;
+    --gold: #FFD700;
+    --charcoal: #1a1a1a;
+    --smoke: #2d2d2d;
+    --ash: #3d3d3d;
+    --light: #f5f0e8;
+    --cream: #fdf8f0;
+    --success: #4CAF50;
+    --danger: #e53935;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: ‘Outfit’, sans-serif;
+background: var(–charcoal);
+color: var(–light);
+min-height: 100vh;
+}
+
+/* ===== HERO ===== */
+.hero {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+background: radial-gradient(ellipse at 50% 100%, #3a1a00 0%, #1a0800 40%, var(–charcoal) 70%);
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 300px;
+background: radial-gradient(ellipse at 50% 100%, rgba(255,69,0,0.35) 0%, transparent 70%);
+animation: glow-pulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+from { opacity: 0.6; transform: scaleX(0.95); }
+to { opacity: 1; transform: scaleX(1.05); }
+}
+
+.flames {
+position: absolute;
+bottom: 0;
+width: 100%;
+display: flex;
+justify-content: center;
+gap: 8px;
+padding: 0 20%;
+}
+
+.flame {
+width: 18px;
+border-radius: 50% 50% 20% 20%;
+transform-origin: bottom center;
+animation: flicker 0.8s ease-in-out infinite alternate;
+filter: blur(1px);
+}
+
+.flame:nth-child(odd) { animation-delay: -0.3s; }
+.flame:nth-child(3n) { animation-delay: -0.6s; animation-duration: 1.1s; }
+
+@keyframes flicker {
+0% { transform: scaleX(1) scaleY(1) rotate(-2deg); }
+100% { transform: scaleX(0.85) scaleY(1.15) rotate(2deg); }
+}
+
+.f1 { height: 80px; background: linear-gradient(to top, var(–gold), var(–fire)); opacity: 0.9; }
+.f2 { height: 120px; background: linear-gradient(to top, var(–ember), #ff2200); opacity: 0.85; }
+.f3 { height: 60px; background: linear-gradient(to top, var(–gold), var(–ember)); opacity: 0.7; }
+.f4 { height: 100px; background: linear-gradient(to top, var(–fire), #cc1100); opacity: 0.9; }
+.f5 { height: 90px; background: linear-gradient(to top, var(–gold), var(–fire)); opacity: 0.8; }
+.f6 { height: 70px; background: linear-gradient(to top, var(–ember), var(–fire)); opacity: 0.75; }
+.f7 { height: 110px; background: linear-gradient(to top, var(–fire), #aa0000); opacity: 0.85; }
+.f8 { height: 55px; background: linear-gradient(to top, var(–gold), var(–ember)); opacity: 0.7; }
+
+.hero-content {
+position: relative;
+z-index: 2;
+text-align: center;
+padding: 2rem;
+animation: rise 1s ease-out both;
+}
+
+@keyframes rise {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-emoji { font-size: 5rem; display: block; margin-bottom: 1rem; filter: drop-shadow(0 0 20px rgba(255,140,0,0.8)); }
+
+h1.big-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(4rem, 12vw, 9rem);
+letter-spacing: 0.05em;
+line-height: 0.9;
+background: linear-gradient(135deg, var(–gold) 0%, var(–ember) 40%, var(–fire) 80%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: none;
+filter: drop-shadow(0 0 30px rgba(255,140,0,0.5));
+}
+
+.hero-sub {
+font-size: 1.1rem;
+color: rgba(245,240,232,0.65);
+margin-top: 1rem;
+font-weight: 300;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+}
+
+.scroll-hint {
+position: absolute;
+bottom: 2rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.5rem;
+color: rgba(245,240,232,0.4);
+font-size: 0.8rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+animation: bounce 2s infinite;
+cursor: pointer;
+z-index: 2;
+}
+
+.scroll-hint svg { width: 24px; height: 24px; }
+
+@keyframes bounce {
+0%, 100% { transform: translateX(-50%) translateY(0); }
+50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===== LIST SECTION ===== */
+.list-section {
+min-height: 100vh;
+padding: 4rem 1rem;
+background: var(–charcoal);
+position: relative;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.section-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: clamp(2.5rem, 6vw, 4.5rem);
+letter-spacing: 0.05em;
+background: linear-gradient(135deg, var(–gold), var(–fire));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.section-sub {
+color: rgba(245,240,232,0.45);
+font-size: 0.9rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+margin-top: 0.4rem;
+}
+
+/* Items Grid */
+.items-container {
+max-width: 900px;
+margin: 0 auto;
+}
+
+.item-card {
+background: var(–smoke);
+border: 1px solid var(–ash);
+border-radius: 12px;
+padding: 1rem 1.4rem;
+margin-bottom: 0.75rem;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+transition: all 0.25s ease;
+position: relative;
+overflow: hidden;
+}
+
+.item-card::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 3px;
+background: var(–fire);
+transform: scaleY(0);
+transition: transform 0.25s ease;
+border-radius: 0 2px 2px 0;
+}
+
+.item-card:hover::before { transform: scaleY(1); }
+.item-card:hover { border-color: rgba(255,69,0,0.3); background: #333; }
+
+.item-name {
+font-size: 1rem;
+font-weight: 500;
+color: var(–light);
+flex: 1;
+}
+
+.item-assignees {
+display: flex;
+gap: 0.4rem;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+
+.assignee-badge {
+background: rgba(255,69,0,0.15);
+border: 1px solid rgba(255,69,0,0.3);
+color: var(–ember);
+padding: 0.2rem 0.7rem;
+border-radius: 20px;
+font-size: 0.78rem;
+font-weight: 500;
+white-space: nowrap;
+}
+
+.no-assignee {
+color: rgba(245,240,232,0.25);
+font-size: 0.78rem;
+font-style: italic;
+}
+
+/* ===== EDIT SECTION ===== */
+.edit-section {
+background: linear-gradient(180deg, var(–charcoal) 0%, var(–smoke) 100%);
+padding: 4rem 1rem 6rem;
+border-top: 1px solid var(–ash);
+}
+
+.edit-container {
+max-width: 700px;
+margin: 0 auto;
+}
+
+/* Step indicators */
+.steps {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0;
+margin-bottom: 3rem;
+}
+
+.step {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.4rem;
+}
+
+.step-num {
+width: 36px; height: 36px;
+border-radius: 50%;
+border: 2px solid var(–ash);
+display: flex; align-items: center; justify-content: center;
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.1rem;
+color: rgba(245,240,232,0.3);
+transition: all 0.3s;
+}
+
+.step-label {
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: rgba(245,240,232,0.3);
+transition: all 0.3s;
+}
+
+.step.active .step-num {
+border-color: var(–fire);
+background: rgba(255,69,0,0.15);
+color: var(–ember);
+}
+
+.step.active .step-label { color: var(–ember); }
+.step.done .step-num { border-color: var(–success); background: rgba(76,175,80,0.15); color: var(–success); }
+.step.done .step-label { color: var(–success); }
+
+.step-line {
+flex: 1;
+height: 2px;
+background: var(–ash);
+margin: 0 1rem;
+margin-bottom: 1.4rem;
+max-width: 80px;
+transition: background 0.3s;
+}
+
+.step-line.done { background: var(–success); }
+
+/* Cards */
+.edit-card {
+background: var(–smoke);
+border: 1px solid var(–ash);
+border-radius: 16px;
+padding: 2rem;
+display: none;
+animation: fadeUp 0.4s ease both;
+}
+
+.edit-card.active { display: block; }
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.edit-card-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 2rem;
+letter-spacing: 0.05em;
+color: var(–ember);
+margin-bottom: 0.3rem;
+}
+
+.edit-card-sub {
+color: rgba(245,240,232,0.4);
+font-size: 0.85rem;
+margin-bottom: 1.8rem;
+}
+
+/* Person grid */
+.person-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+gap: 0.75rem;
+margin-bottom: 1.5rem;
+}
+
+.person-btn {
+padding: 0.9rem 0.5rem;
+background: var(–ash);
+border: 2px solid transparent;
+border-radius: 10px;
+color: var(–light);
+font-family: ‘Outfit’, sans-serif;
+font-size: 0.9rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.2s;
+text-align: center;
+}
+
+.person-btn:hover { border-color: var(–fire); background: rgba(255,69,0,0.1); }
+.person-btn.selected { border-color: var(–fire); background: rgba(255,69,0,0.2); color: var(–ember); }
+
+/* Item checklist */
+.item-check-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+
+.item-check {
+display: flex;
+align-items: center;
+gap: 0.9rem;
+padding: 0.85rem 1rem;
+background: var(–ash);
+border-radius: 10px;
+cursor: pointer;
+transition: all 0.2s;
+border: 2px solid transparent;
+user-select: none;
+}
+
+.item-check:hover { border-color: rgba(255,69,0,0.3); }
+.item-check.checked { background: rgba(255,69,0,0.12); border-color: rgba(255,69,0,0.4); }
+
+.custom-cb {
+width: 20px; height: 20px;
+border-radius: 5px;
+border: 2px solid var(–ash);
+display: flex; align-items: center; justify-content: center;
+flex-shrink: 0;
+transition: all 0.2s;
+background: var(–smoke);
+}
+
+.item-check.checked .custom-cb {
+background: var(–fire);
+border-color: var(–fire);
+}
+
+.custom-cb svg { display: none; }
+.item-check.checked .custom-cb svg { display: block; }
+
+.item-check-label { font-size: 0.9rem; flex: 1; }
+
+.item-check-assignees {
+display: flex;
+gap: 0.3rem;
+flex-wrap: wrap;
+}
+
+.small-badge {
+font-size: 0.68rem;
+background: rgba(255,140,0,0.12);
+border: 1px solid rgba(255,140,0,0.25);
+color: rgba(255,140,0,0.7);
+padding: 0.1rem 0.5rem;
+border-radius: 10px;
+}
+
+/* Buttons */
+.btn {
+padding: 0.85rem 2rem;
+border: none;
+border-radius: 10px;
+font-family: ‘Outfit’, sans-serif;
+font-size: 0.95rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+letter-spacing: 0.03em;
+}
+
+.btn-primary {
+background: linear-gradient(135deg, var(–fire), var(–ember));
+color: white;
+width: 100%;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,69,0,0.4); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-ghost {
+background: transparent;
+color: rgba(245,240,232,0.5);
+border: 1px solid var(–ash);
+margin-right: 0.5rem;
+}
+
+.btn-ghost:hover { color: var(–light); border-color: rgba(245,240,232,0.3); }
+
+/* Success */
+.success-screen {
+text-align: center;
+padding: 2rem 1rem;
+}
+
+.success-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+.success-title { font-family: ‘Bebas Neue’, sans-serif; font-size: 2.5rem; color: var(–gold); margin-bottom: 0.5rem; }
+.success-msg { color: rgba(245,240,232,0.5); font-size: 0.9rem; }
+
+/* ===== TOAST ===== */
+.toast {
+position: fixed;
+bottom: 2rem;
+left: 50%;
+transform: translateX(-50%) translateY(100px);
+background: var(–smoke);
+border: 1px solid var(–fire);
+color: var(–ember);
+padding: 0.8rem 1.5rem;
+border-radius: 10px;
+font-size: 0.9rem;
+font-weight: 500;
+z-index: 1000;
+transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== ADMIN STYLES ===== */
+.admin-page {
+display: none;
+min-height: 100vh;
+background: #0d0d0d;
+padding: 2rem 1rem 4rem;
+}
+
+.admin-page.visible { display: block; }
+
+.admin-header {
+max-width: 1100px;
+margin: 0 auto 2rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+border-bottom: 1px solid #222;
+padding-bottom: 1.5rem;
+}
+
+.admin-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 1.8rem; color: var(–fire); letter-spacing: 0.1em; }
+.admin-badge { background: rgba(255,69,0,0.15); border: 1px solid rgba(255,69,0,0.4); color: var(–fire); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; }
+
+.admin-grid {
+max-width: 1100px;
+margin: 0 auto;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1.5rem;
+}
+
+@media (max-width: 700px) { .admin-grid { grid-template-columns: 1fr; } }
+
+.admin-panel {
+background: #171717;
+border: 1px solid #222;
+border-radius: 14px;
+padding: 1.5rem;
+}
+
+.admin-panel-full { grid-column: 1 / -1; }
+
+.admin-panel-title {
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 1.4rem;
+color: var(–ember);
+letter-spacing: 0.05em;
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+
+.admin-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+
+.admin-list-item {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.6rem 0.8rem;
+background: #1f1f1f;
+border-radius: 8px;
+font-size: 0.85rem;
+}
+
+.admin-list-item input {
+background: transparent;
+border: none;
+color: var(–light);
+font-family: ‘Outfit’, sans-serif;
+font-size: 0.85rem;
+flex: 1;
+outline: none;
+}
+
+.admin-list-item input:focus { color: var(–ember); }
+
+.del-btn {
+background: none;
+border: none;
+color: rgba(229,57,53,0.5);
+cursor: pointer;
+font-size: 1rem;
+transition: color 0.2s;
+padding: 0 0.3rem;
+}
+
+.del-btn:hover { color: var(–danger); }
+
+.add-row {
+display: flex;
+gap: 0.5rem;
+}
+
+.admin-input {
+flex: 1;
+background: #1f1f1f;
+border: 1px solid #333;
+border-radius: 8px;
+color: var(–light);
+font-family: ‘Outfit’, sans-serif;
+font-size: 0.85rem;
+padding: 0.6rem 0.8rem;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.admin-input:focus { border-color: var(–fire); }
+
+.add-btn {
+background: rgba(255,69,0,0.2);
+border: 1px solid rgba(255,69,0,0.4);
+color: var(–ember);
+border-radius: 8px;
+padding: 0.6rem 1rem;
+cursor: pointer;
+font-size: 0.85rem;
+font-family: ‘Outfit’, sans-serif;
+transition: all 0.2s;
+}
+
+.add-btn:hover { background: rgba(255,69,0,0.35); }
+
+/* History table */
+.history-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.history-table th { text-align: left; color: rgba(245,240,232,0.35); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5rem 0.7rem; border-bottom: 1px solid #222; }
+.history-table td { padding: 0.6rem 0.7rem; border-bottom: 1px solid #1a1a1a; color: rgba(245,240,232,0.7); vertical-align: top; }
+.history-table tr:hover td { background: #1a1a1a; }
+.history-action { color: var(–ember); font-weight: 500; }
+.history-ip { font-family: monospace; color: rgba(245,240,232,0.4); font-size: 0.75rem; }
+.history-time { color: rgba(245,240,232,0.3); font-size: 0.75rem; }
+
+/* Suspicious IPs */
+.suspicious-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.suspicious-item {
+background: rgba(229,57,53,0.07);
+border: 1px solid rgba(229,57,53,0.2);
+border-radius: 8px;
+padding: 0.8rem 1rem;
+}
+
+.suspicious-ip { font-family: monospace; color: var(–danger); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.suspicious-names { color: rgba(245,240,232,0.5); font-size: 0.78rem; }
+.suspicious-count { color: rgba(229,57,53,0.7); font-size: 0.72rem; float: right; }
+
+/* Admin login */
+.admin-login {
+max-width: 400px;
+margin: 10vh auto 0;
+background: #171717;
+border: 1px solid #222;
+border-radius: 16px;
+padding: 2.5rem;
+text-align: center;
+}
+
+.admin-login-title { font-family: ‘Bebas Neue’, sans-serif; font-size: 2rem; color: var(–fire); margin-bottom: 0.3rem; }
+.admin-login-sub { color: rgba(245,240,232,0.3); font-size: 0.8rem; margin-bottom: 2rem; }
+
+.code-inputs { display: flex; gap: 0.7rem; justify-content: center; margin-bottom: 1.5rem; }
+
+.code-digit {
+width: 52px; height: 60px;
+background: #1f1f1f;
+border: 2px solid #333;
+border-radius: 10px;
+color: var(–light);
+font-family: ‘Bebas Neue’, sans-serif;
+font-size: 2rem;
+text-align: center;
+outline: none;
+transition: all 0.2s;
+}
+
+.code-digit:focus { border-color: var(–fire); }
+.code-digit.filled { border-color: rgba(255,69,0,0.5); }
+.login-error { color: var(–danger); font-size: 0.82rem; margin-bottom: 1rem; display: none; }
+.login-error.show { display: block; }
+
+/* Responsive */
+@media (max-width: 600px) {
+.item-card { flex-direction: column; align-items: flex-start; }
+.item-assignees { justify-content: flex-start; }
+.person-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.main-page { display: block; }
+
+/* Divider */
+.divider {
+max-width: 900px;
+margin: 0 auto 3rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(–ash)); }
+.divider-line.right { background: linear-gradient(to left, transparent, var(–ash)); }
+.divider-text { color: rgba(245,240,232,0.25); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; white-space: nowrap; }
+
+.admin-save-btn {
+background: linear-gradient(135deg, var(–fire), var(–ember));
+border: none;
+border-radius: 8px;
+color: white;
+font-family: ‘Outfit’, sans-serif;
+font-size: 0.85rem;
+font-weight: 600;
+padding: 0.7rem 1.5rem;
+cursor: pointer;
+margin-top: 1rem;
+transition: all 0.2s;
+width: 100%;
+}
+
+.admin-save-btn:hover { box-shadow: 0 4px 15px rgba(255,69,0,0.4); transform: translateY(-1px); }
+
+.no-suspicious { color: rgba(245,240,232,0.25); font-size: 0.85rem; text-align: center; padding: 1rem; }
+.no-history { color: rgba(245,240,232,0.25); font-size: 0.85rem; text-align: center; padding: 1rem; }
+</style>
+
+</head>
+<body>
+
+<!-- MAIN PAGE -->
+
+<div class="main-page" id="mainPage">
+
+  <!-- HERO -->
+
+  <section class="hero" id="heroSection">
+    <div class="hero-content">
+      <span class="hero-emoji">🔥</span>
+      <h1 class="big-title">BBQ<br>des frères</h1>
+      <p class="hero-sub">La liste pour être au point</p>
+    </div>
+    <div class="flames">
+      <div class="flame f3"></div>
+      <div class="flame f1"></div>
+      <div class="flame f4"></div>
+      <div class="flame f2"></div>
+      <div class="flame f7"></div>
+      <div class="flame f5"></div>
+      <div class="flame f6"></div>
+      <div class="flame f8"></div>
+      <div class="flame f4"></div>
+      <div class="flame f1"></div>
+      <div class="flame f3"></div>
+    </div>
+    <div class="scroll-hint" onclick="document.getElementById('listSection').scrollIntoView({behavior:'smooth'})">
+      <span>Voir la liste</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- LIST SECTION -->
+
+  <section class="list-section" id="listSection">
+    <div class="section-header">
+      <div class="section-title">La liste 📋</div>
+      <div class="section-sub">Ce que chacun ramène</div>
+    </div>
+
+```
+<div class="items-container" id="itemsDisplay"></div>
+
+<div class="divider" style="margin-top:3rem;">
+  <div class="divider-line"></div>
+  <div class="divider-text">Tu veux modifier ce que tu ramènes ?</div>
+  <div class="divider-line right"></div>
+</div>
+```
+
+  </section>
+
+  <!-- EDIT SECTION -->
+
+  <section class="edit-section" id="editSection">
+    <div class="edit-container">
+
+```
+  <div class="section-header" style="margin-bottom:2rem;">
+    <div class="section-title">Modifier ✏️</div>
+    <div class="section-sub">Dis-nous ce que tu ramènes</div>
+  </div>
+
+  <!-- Steps indicator -->
+  <div class="steps">
+    <div class="step active" id="step1-ind">
+      <div class="step-num">1</div>
+      <div class="step-label">Qui es-tu</div>
+    </div>
+    <div class="step-line" id="line1"></div>
+    <div class="step" id="step2-ind">
+      <div class="step-num">2</div>
+      <div class="step-label">Tes trucs</div>
+    </div>
+    <div class="step-line" id="line2"></div>
+    <div class="step" id="step3-ind">
+      <div class="step-num">3</div>
+      <div class="step-label">Validé</div>
+    </div>
+  </div>
+
+  <!-- Step 1: Who are you -->
+  <div class="edit-card active" id="editStep1">
+    <div class="edit-card-title">T'es qui ?</div>
+    <div class="edit-card-sub">Sélectionne ton prénom pour modifier ta liste</div>
+    <div class="person-grid" id="personGrid"></div>
+    <button class="btn btn-primary" id="btnStep1Next" disabled onclick="goToStep2()">Continuer →</button>
+  </div>
+
+  <!-- Step 2: What do you bring -->
+  <div class="edit-card" id="editStep2">
+    <div class="edit-card-title">Tu ramènes quoi ?</div>
+    <div class="edit-card-sub" id="step2Sub">Coche les trucs que tu vas ramener</div>
+    <div class="item-check-list" id="itemCheckList"></div>
+    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+      <button class="btn btn-ghost" onclick="goToStep1()">← Retour</button>
+      <button class="btn btn-primary" style="flex:1;" onclick="saveChanges()">Valider mes choix 🔥</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Done -->
+  <div class="edit-card" id="editStep3">
+    <div class="success-screen">
+      <span class="success-icon">✅</span>
+      <div class="success-title">C'est noté frère !</div>
+      <p class="success-msg" id="successMsg">La liste a été mise à jour.</p>
+      <br><br>
+      <button class="btn btn-primary" style="max-width:300px;margin:0 auto;" onclick="resetEdit()">Modifier autre chose</button>
+    </div>
+  </div>
+
+</div>
+```
+
+  </section>
+
+</div>
+
+<!-- ADMIN PAGE -->
+
+<div class="admin-page" id="adminPage">
+
+  <!-- Admin Login -->
+
+  <div id="adminLoginBox">
+    <div class="admin-login">
+      <div class="admin-login-title">🔐 Admin</div>
+      <div class="admin-login-sub">Entre le code d'accès</div>
+      <div class="code-inputs" id="codeInputs">
+        <input type="text" maxlength="1" class="code-digit" oninput="codeInput(this,0)" onkeydown="codeNav(event,0)">
+        <input type="text" maxlength="1" class="code-digit" oninput="codeInput(this,1)" onkeydown="codeNav(event,1)">
+        <input type="text" maxlength="1" class="code-digit" oninput="codeInput(this,2)" onkeydown="codeNav(event,2)">
+        <input type="text" maxlength="1" class="code-digit" oninput="codeInput(this,3)" onkeydown="codeNav(event,3)">
+      </div>
+      <div class="login-error" id="loginError">❌ Code incorrect</div>
+      <button class="btn btn-primary" onclick="checkAdminCode()">Accéder →</button>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard -->
+
+  <div id="adminDashboard" style="display:none;">
+    <div class="admin-header">
+      <div class="admin-logo">🔥 BBQ Admin</div>
+      <div class="admin-badge">Panneau d'administration</div>
+    </div>
+
+```
+<div class="admin-grid">
+
+  <!-- Persons list -->
+  <div class="admin-panel">
+    <div class="admin-panel-title">👤 Personnes</div>
+    <div class="admin-list" id="adminPersonList"></div>
+    <div class="add-row">
+      <input type="text" class="admin-input" id="newPersonInput" placeholder="Nouveau prénom..." onkeydown="if(event.key==='Enter')addPerson()">
+      <button class="add-btn" onclick="addPerson()">+ Ajouter</button>
+    </div>
+    <button class="admin-save-btn" onclick="savePeople()">💾 Sauvegarder les personnes</button>
+  </div>
+
+  <!-- Items list -->
+  <div class="admin-panel">
+    <div class="admin-panel-title">📦 Objets</div>
+    <div class="admin-list" id="adminItemList"></div>
+    <div class="add-row">
+      <input type="text" class="admin-input" id="newItemInput" placeholder="Nouvel objet..." onkeydown="if(event.key==='Enter')addItem()">
+      <button class="add-btn" onclick="addItem()">+ Ajouter</button>
+    </div>
+    <button class="admin-save-btn" onclick="saveItems()">💾 Sauvegarder les objets</button>
+  </div>
+
+  <!-- Suspicious IPs -->
+  <div class="admin-panel">
+    <div class="admin-panel-title">⚠️ IPs suspectes</div>
+    <p style="color:rgba(245,240,232,0.35);font-size:0.78rem;margin-bottom:1rem;">IPs ayant modifié la liste de plusieurs personnes différentes</p>
+    <div class="suspicious-list" id="suspiciousList"></div>
+  </div>
+
+  <!-- History -->
+  <div class="admin-panel admin-panel-full">
+    <div class="admin-panel-title">📜 Historique des changements</div>
+    <div style="overflow-x:auto;">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Date & heure</th>
+            <th>Personne</th>
+            <th>Action</th>
+            <th>IP</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+      <div class="no-history" id="noHistory">Aucun historique pour l'instant</div>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// =====================
+// DATA STORAGE (localStorage)
+// =====================
+
+const ADMIN_CODE = "2612"; // Change this code
+
+const DEFAULT_PEOPLE = [
+  "Ali","Aimran","Houali","Ibrahim","Kyan","Marwen","Rayan kou","Yassin","Rayan bkh"
+];
+
+const DEFAULT_ITEMS = [
+  "Chichtok","Pilon de poulet","Kefta","Côtelette de viande",
+  "Viande déjà coupée","Buns / baguette","Drinks & ice box",
+  "Barbecue","Sauce","Cheese","Chaise","Tapis","Table pliable",
+  "Couverts","Charbon","Allume feux","Ballon","Jeux de société",
+  "Jeux de cartes / Uno","Mon grill (Ibrahim)"
+];
+
+const DEFAULT_ASSIGNMENTS = {
+  "Chichtok": ["Houali"],
+  "Pilon de poulet": ["Rayan bkh"],
+  "Kefta": ["Aimran"],
+  "Buns / baguette": ["Yassin"],
+  "Sauce": ["Yassin"],
+  "Cheese": ["Aimran"],
+  "Chaise": ["Chacun amène"],
+  "Charbon": ["Ali"],
+  "Mon grill (Ibrahim)": ["Ibrahim"]
+};
+
+function getData(key, defaultVal) {
+  try {
+    const v = localStorage.getItem(key);
+    return v ? JSON.parse(v) : defaultVal;
+  } catch { return defaultVal; }
+}
+
+function setData(key, val) {
+  localStorage.setItem(key, JSON.stringify(val));
+}
+
+function getPeople() { return getData('bbq_people', DEFAULT_PEOPLE); }
+function getItems() { return getData('bbq_items', DEFAULT_ITEMS); }
+function getAssignments() { return getData('bbq_assignments', DEFAULT_ASSIGNMENTS); }
+function getHistory() { return getData('bbq_history', []); }
+
+function saveAssignments(a) { setData('bbq_assignments', a); }
+function saveHistory(h) { setData('bbq_history', h); }
+
+// =====================
+// IP DETECTION (best effort - public API)
+// =====================
+
+let userIP = 'inconnu';
+fetch('https://api.ipify.org?format=json')
+  .then(r => r.json())
+  .then(d => { userIP = d.ip; })
+  .catch(() => { userIP = 'inconnu'; });
+
+// =====================
+// ROUTING
+// =====================
+
+function checkRoute() {
+  const hash = window.location.hash;
+  if (hash === '#admin' || hash.startsWith('#admin')) {
+    document.getElementById('mainPage').style.display = 'none';
+    document.getElementById('adminPage').classList.add('visible');
+    renderAdminLogin();
+  }
+}
+
+window.addEventListener('hashchange', checkRoute);
+checkRoute();
+
+// =====================
+// RENDER LIST
+// =====================
+
+function renderList() {
+  const items = getItems();
+  const assignments = getAssignments();
+  const container = document.getElementById('itemsDisplay');
+  container.innerHTML = '';
+
+  items.forEach(item => {
+    const assigned = assignments[item] || [];
+    const card = document.createElement('div');
+    card.className = 'item-card';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'item-name';
+    nameEl.textContent = item;
+
+    const badgesEl = document.createElement('div');
+    badgesEl.className = 'item-assignees';
+
+    if (assigned.length === 0) {
+      const none = document.createElement('span');
+      none.className = 'no-assignee';
+      none.textContent = '—';
+      badgesEl.appendChild(none);
+    } else {
+      assigned.forEach(name => {
+        const badge = document.createElement('span');
+        badge.className = 'assignee-badge';
+        badge.textContent = name;
+        badgesEl.appendChild(badge);
+      });
+    }
+
+    card.appendChild(nameEl);
+    card.appendChild(badgesEl);
+    container.appendChild(card);
+  });
+}
+
+// =====================
+// EDIT FLOW
+// =====================
+
+let selectedPerson = null;
+let checkedItems = new Set();
+
+function renderPersonGrid() {
+  const people = getPeople();
+  const grid = document.getElementById('personGrid');
+  grid.innerHTML = '';
+  people.forEach(name => {
+    const btn = document.createElement('button');
+    btn.className = 'person-btn';
+    btn.textContent = name;
+    btn.onclick = () => selectPerson(name, btn);
+    if (name === selectedPerson) btn.classList.add('selected');
+    grid.appendChild(btn);
+  });
+}
+
+function selectPerson(name, btn) {
+  selectedPerson = name;
+  document.querySelectorAll('.person-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('btnStep1Next').disabled = false;
+}
+
+function goToStep2() {
+  if (!selectedPerson) return;
+
+  // Pre-check items already assigned to this person
+  const assignments = getAssignments();
+  checkedItems = new Set();
+  const items = getItems();
+  items.forEach(item => {
+    if ((assignments[item] || []).includes(selectedPerson)) {
+      checkedItems.add(item);
+    }
+  });
+
+  document.getElementById('step2Sub').textContent = `Salut ${selectedPerson} ! Coche ce que tu ramènes 👇`;
+  renderItemChecklist();
+
+  setStep(2);
+}
+
+function renderItemChecklist() {
+  const items = getItems();
+  const assignments = getAssignments();
+  const list = document.getElementById('itemCheckList');
+  list.innerHTML = '';
+
+  items.forEach(item => {
+    const isChecked = checkedItems.has(item);
+    const othersAssigned = (assignments[item] || []).filter(n => n !== selectedPerson && n !== 'Chacun amène');
+
+    const div = document.createElement('div');
+    div.className = 'item-check' + (isChecked ? ' checked' : '');
+    div.onclick = () => toggleItem(item, div);
+
+    div.innerHTML = `
+      <div class="custom-cb">
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+          <path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="item-check-label">${item}</div>
+      ${othersAssigned.length > 0 ? `<div class="item-check-assignees">${othersAssigned.map(n=>`<span class="small-badge">${n}</span>`).join('')}</div>` : ''}
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+function toggleItem(item, el) {
+  if (checkedItems.has(item)) {
+    checkedItems.delete(item);
+    el.classList.remove('checked');
+  } else {
+    checkedItems.add(item);
+    el.classList.add('checked');
+  }
+}
+
+function goToStep1() {
+  setStep(1);
+}
+
+function saveChanges() {
+  const assignments = getAssignments();
+  const items = getItems();
+  const prevState = {};
+  items.forEach(item => { prevState[item] = [...(assignments[item] || [])]; });
+
+  // Remove person from all items, then re-add where checked
+  items.forEach(item => {
+    let arr = (assignments[item] || []).filter(n => n !== selectedPerson);
+    if (checkedItems.has(item)) arr.push(selectedPerson);
+    assignments[item] = arr;
+  });
+
+  saveAssignments(assignments);
+
+  // Log history
+  const history = getHistory();
+  const added = items.filter(i => checkedItems.has(i) && !prevState[i].includes(selectedPerson));
+  const removed = items.filter(i => !checkedItems.has(i) && prevState[i].includes(selectedPerson));
+
+  if (added.length || removed.length) {
+    let actionParts = [];
+    if (added.length) actionParts.push(`+${added.join(', ')}`);
+    if (removed.length) actionParts.push(`-${removed.join(', ')}`);
+    history.unshift({
+      time: new Date().toISOString(),
+      person: selectedPerson,
+      action: actionParts.join(' | '),
+      ip: userIP
+    });
+    saveHistory(history.slice(0, 500));
+  }
+
+  document.getElementById('successMsg').textContent = `Nickel ${selectedPerson}, ta liste est à jour ! 🔥`;
+  setStep(3);
+  renderList();
+}
+
+function resetEdit() {
+  selectedPerson = null;
+  checkedItems = new Set();
+  renderPersonGrid();
+  document.getElementById('btnStep1Next').disabled = true;
+  setStep(1);
+}
+
+function setStep(n) {
+  ['editStep1','editStep2','editStep3'].forEach((id, i) => {
+    document.getElementById(id).classList.toggle('active', i+1 === n);
+  });
+  ['step1-ind','step2-ind','step3-ind'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.className = 'step' + (i+1 < n ? ' done' : i+1 === n ? ' active' : '');
+  });
+  ['line1','line2'].forEach((id, i) => {
+    document.getElementById(id).classList.toggle('done', i+1 < n);
+  });
+}
+
+// =====================
+// ADMIN
+// =====================
+
+function renderAdminLogin() {
+  document.getElementById('adminLoginBox').style.display = 'block';
+  document.getElementById('adminDashboard').style.display = 'none';
+}
+
+function codeInput(el, idx) {
+  el.value = el.value.replace(/[^0-9]/g,'');
+  if (el.value) {
+    el.classList.add('filled');
+    const inputs = document.querySelectorAll('.code-digit');
+    if (idx < 3) inputs[idx+1].focus();
+    else checkAdminCode();
+  } else {
+    el.classList.remove('filled');
+  }
+}
+
+function codeNav(event, idx) {
+  const inputs = document.querySelectorAll('.code-digit');
+  if (event.key === 'Backspace' && !inputs[idx].value && idx > 0) {
+    inputs[idx-1].focus();
+  }
+}
+
+function checkAdminCode() {
+  const inputs = document.querySelectorAll('.code-digit');
+  const code = [...inputs].map(i => i.value).join('');
+  if (code === ADMIN_CODE) {
+    document.getElementById('adminLoginBox').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    renderAdminDashboard();
+  } else {
+    document.getElementById('loginError').classList.add('show');
+    inputs.forEach(i => { i.value = ''; i.classList.remove('filled'); });
+    inputs[0].focus();
+    setTimeout(() => document.getElementById('loginError').classList.remove('show'), 2500);
+  }
+}
+
+function renderAdminDashboard() {
+  renderAdminPeople();
+  renderAdminItems();
+  renderHistory();
+  renderSuspicious();
+}
+
+function renderAdminPeople() {
+  const people = getPeople();
+  const list = document.getElementById('adminPersonList');
+  list.innerHTML = '';
+  people.forEach((name, i) => {
+    const row = document.createElement('div');
+    row.className = 'admin-list-item';
+    row.innerHTML = `
+      <input type="text" value="${name}" data-idx="${i}" onchange="updatePersonName(this)">
+      <button class="del-btn" onclick="deletePerson(${i})">✕</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function updatePersonName(el) {
+  const people = getPeople();
+  people[parseInt(el.dataset.idx)] = el.value;
+  setData('bbq_people', people);
+}
+
+function deletePerson(idx) {
+  const people = getPeople();
+  people.splice(idx, 1);
+  setData('bbq_people', people);
+  renderAdminPeople();
+  renderList();
+  renderPersonGrid();
+}
+
+function addPerson() {
+  const input = document.getElementById('newPersonInput');
+  const name = input.value.trim();
+  if (!name) return;
+  const people = getPeople();
+  people.push(name);
+  setData('bbq_people', people);
+  input.value = '';
+  renderAdminPeople();
+}
+
+function savePeople() {
+  // Already saved live; refresh display
+  renderList();
+  renderPersonGrid();
+  showToast('✅ Personnes sauvegardées !');
+}
+
+function renderAdminItems() {
+  const items = getItems();
+  const list = document.getElementById('adminItemList');
+  list.innerHTML = '';
+  items.forEach((name, i) => {
+    const row = document.createElement('div');
+    row.className = 'admin-list-item';
+    row.innerHTML = `
+      <input type="text" value="${name}" data-idx="${i}" onchange="updateItemName(this)">
+      <button class="del-btn" onclick="deleteItem(${i})">✕</button>
+    `;
+    list.appendChild(row);
+  });
+}
+
+function updateItemName(el) {
+  const items = getItems();
+  items[parseInt(el.dataset.idx)] = el.value;
+  setData('bbq_items', items);
+}
+
+function deleteItem(idx) {
+  const items = getItems();
+  items.splice(idx, 1);
+  setData('bbq_items', items);
+  renderAdminItems();
+  renderList();
+}
+
+function addItem() {
+  const input = document.getElementById('newItemInput');
+  const name = input.value.trim();
+  if (!name) return;
+  const items = getItems();
+  items.push(name);
+  setData('bbq_items', items);
+  input.value = '';
+  renderAdminItems();
+}
+
+function saveItems() {
+  renderList();
+  showToast('✅ Objets sauvegardés !');
+}
+
+function renderHistory() {
+  const history = getHistory();
+  const tbody = document.getElementById('historyBody');
+  const noHistory = document.getElementById('noHistory');
+  tbody.innerHTML = '';
+
+  if (history.length === 0) {
+    noHistory.style.display = 'block';
+    return;
+  }
+  noHistory.style.display = 'none';
+
+  history.forEach(entry => {
+    const tr = document.createElement('tr');
+    const d = new Date(entry.time);
+    const dateStr = d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR', {hour:'2-digit',minute:'2-digit'});
+    tr.innerHTML = `
+      <td class="history-time">${dateStr}</td>
+      <td>${entry.person}</td>
+      <td class="history-action">${entry.action}</td>
+      <td class="history-ip">${entry.ip}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderSuspicious() {
+  const history = getHistory();
+  const ipPersonMap = {};
+
+  history.forEach(entry => {
+    if (!entry.ip || entry.ip === 'inconnu') return;
+    if (!ipPersonMap[entry.ip]) ipPersonMap[entry.ip] = new Set();
+    ipPersonMap[entry.ip].add(entry.person);
+  });
+
+  const suspicious = Object.entries(ipPersonMap).filter(([ip, people]) => people.size > 1);
+  const list = document.getElementById('suspiciousList');
+  list.innerHTML = '';
+
+  if (suspicious.length === 0) {
+    list.innerHTML = '<div class="no-suspicious">Aucune activité suspecte 👍</div>';
+    return;
+  }
+
+  suspicious.forEach(([ip, people]) => {
+    const div = document.createElement('div');
+    div.className = 'suspicious-item';
+    div.innerHTML = `
+      <div class="suspicious-ip">🔴 ${ip} <span class="suspicious-count">${people.size} personnes</span></div>
+      <div class="suspicious-names">A modifié les listes de : ${[...people].join(', ')}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+// =====================
+// TOAST
+// =====================
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// =====================
+// INIT
+// =====================
+
+renderList();
+renderPersonGrid();
+</script>
+
+</body>
+</html>
